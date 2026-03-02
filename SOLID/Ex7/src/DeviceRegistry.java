@@ -11,4 +11,11 @@ public class DeviceRegistry {
         }
         throw new IllegalStateException("Missing: " + simpleName);
     }
+
+    public <T> T getFirstImplementing(Class<T> type) {
+        for (SmartClassroomDevice d : devices) {
+            if (type.isInstance(d)) return type.cast(d);
+        }
+        throw new IllegalStateException("Missing device implementing: " + type.getSimpleName());
+    }
 }
